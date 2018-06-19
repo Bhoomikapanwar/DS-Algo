@@ -1,5 +1,6 @@
 #include<iostream>
 #include<stack>
+#include<queue>
 
 using namespace std;
 
@@ -18,7 +19,7 @@ node * createNewNode(int data)
   return newNode;
 }
 
-void insert(node * &root,int data)
+void insert(node * &root,int data)    //Insertion using recursion is fine for BST but not for simple binary trees
 {
   node * newNode = createNewNode(data);
   if(root==NULL)
@@ -107,17 +108,17 @@ void level_itr(node *root)
 {
   if(root==NULL)
     return;
-  stack<node*> s;
-  s.push(root);
-  while(!s.empty())
+  queue<node*> q;
+  q.push(root);
+  while(!q.empty())
   {
-    node * cur = s.top();
-    s.pop();
+    node * cur = q.front();
+    q.pop();
     cout<<cur->data;
-    if(cur->right)
-    s.push(cur->right);
     if(cur->left)
-    s.push(cur->left);
+    q.push(cur->left);
+    if(cur->right)
+    q.push(cur->right);
   }
 }
 
@@ -175,30 +176,39 @@ bool identical_itr(node *root1,node *root2)
     node * x = s.top().first;
     node * y = s.top().second;
     s.pop();
-    if(x->data==y->data)
-
+    if(x->data!=y->data)
+      return false;
+    if(x->left && y->left)
+      s.push({x->left,y->left});
+    else if(x->left || y->left)
+      return false;
+    if(x->right && y->right)
+      s.push({x->right,y->right});
+    else if(x->right || y->right)
+      return false;
   }
-
+  return true;
 }
 
 int main()
 {
   node * root1 = NULL;
   node * root2 = NULL;
-    insert(root1,5);
-    insert(root1,6);
     insert(root1,7);
+    insert(root1,6);
+    insert(root1,5);
+    insert(root1,9);
+    insert(root1,8);
 
-    post_itr(root1);
+    level_itr(root1);
 
     insert(root2,5);
     insert(root2,6);
-    insert(root2,8);
-    if(identical(root1,root2))
+    insert(root2,7);
+    if(identical_itr(root1,root2))
       cout<<"Identical";
     else
       cout<<"Not identical";
-
     //cout<<"Root: "<<root->data<<endl;
     //pre(root1);
     //pre(root2);

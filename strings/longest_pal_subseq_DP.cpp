@@ -12,7 +12,8 @@ int max(int a, int b)
 int longestPalindrome(string str)
 {
   int n = str.length();
-  int l[n-1][n-1];
+  int l[n][n];
+
   for(int i=0;i<n;i++)    //For length one
   {
       l[i][i] = 1;
@@ -40,7 +41,7 @@ int longestPalindrome(string str)
 
 bool rotatedPalindrome(string str)
 {
-    cout<<str+str;
+    //cout<<str+str;
     if(longestPalindrome(str+str)==2*(str.length()))
       return true;
     return false;

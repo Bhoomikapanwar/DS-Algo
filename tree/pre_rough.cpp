@@ -55,6 +55,33 @@ void insert(node * &root, int data)
   insert(root->right,data);
 }
 
+
+/*bool BST::insert(node*root, node *newNode)    //Insertion in Binary Tree can not be done using recursion(This recursion is following depth first approach)
+{
+  if(!root->left)
+  {
+      //cout<<"Left";
+      root->left = newNode;
+      return true;
+  }
+  if(!root->right)
+  {
+      //cout<<"Right";
+      root->right = newNode;
+      return true;
+  }
+  else{
+    bool insLeft = insert(root->left,newNode);
+    if(!insLeft)
+    {
+    bool insRight = insert(root->right,newNode);
+    return insRight;
+    }
+    return insLeft;
+  }
+}*/
+
+
 int main()
 {
     node * root = NULL;

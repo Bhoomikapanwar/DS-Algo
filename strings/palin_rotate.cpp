@@ -10,9 +10,6 @@ bool ispalindrome(string str, int start, int end)
   {
     if(str[start]!=str[end])
     {
-      //cout<<"Oh no";
-      //cout<<str[start]<<": ";
-      //cout<<str[end];
       return false;
     }
     start++;
