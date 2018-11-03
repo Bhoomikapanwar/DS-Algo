@@ -1,4 +1,4 @@
 # DS-Algo
 
 Programming questions practice 
-:+octocat: 
+:octocat: 
